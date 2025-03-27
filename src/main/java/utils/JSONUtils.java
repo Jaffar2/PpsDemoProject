@@ -2,7 +2,6 @@ package utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.common.mapper.TypeRef;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;

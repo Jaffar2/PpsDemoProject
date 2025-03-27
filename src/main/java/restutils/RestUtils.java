@@ -62,4 +62,7 @@ public class RestUtils {
         printResponseLogInReport(response);
         return response;
     }
+    public static Response performGet(String endpoint, Map<String,String> headers){
+        return getRequestSpecification(endpoint,"",headers).get();
+    }
 }

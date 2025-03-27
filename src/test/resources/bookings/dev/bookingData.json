@@ -1,4 +1,6 @@
 
 {
-  "createBookingEndpoint" : "https://restful-booker.herokuapp.com/booking"
+  "createBookingEndpoint" : "https://restful-booker.herokuapp.com/booking",
+  "tokenEndpoint" : "https://restful-booker.herokuapp.com/auth",
+  "getBookingEndpoint" : "https://restful-booker.herokuapp.com/booking"
 }
