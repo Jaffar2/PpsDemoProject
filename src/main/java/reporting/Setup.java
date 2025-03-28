@@ -17,7 +17,9 @@ public class Setup implements ITestListener {
     public void onStart(ITestContext context) {
         if (extentReports == null) {
             String fileName = ExtentReportManager.getReportNameWithTimeStamp();
-            String fullReportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
+            //String fullReportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
+            String fullReportPath = System.getenv("WORKSPACE") + File.separator + "jenkinsWorkspace" + "reports/extentReport.html";
+
             extentReports = ExtentReportManager.createInstance(fullReportPath, "Test API Automation Report", "Test Execution Report");
 
             System.out.println("Extent Report initialized at: " + fullReportPath);
