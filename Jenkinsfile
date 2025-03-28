@@ -16,7 +16,7 @@ pipeline {
                               allowMissing: false,
                               alwaysLinkToLastBuild: false,
                               keepAll: false,
-                              reportDir: 'Reports',
+                              reportDir: 'reports',
                               reportFiles: 'Spark.html',
                               reportName: 'ExtentReport',
                               reportTitles: '',
