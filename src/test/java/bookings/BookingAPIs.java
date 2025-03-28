@@ -2,11 +2,13 @@ package bookings;
 
 import io.restassured.response.Response;
 import restutils.RestUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class BookingAPIs {
+
     public Response requestToken(String payload) {
         String endPoint = (String) Base.dataFromJsonFile.get("tokenEndpoint");
         return RestUtils.performPost(endPoint, payload, Map.of("Content-Type", "application/json"));

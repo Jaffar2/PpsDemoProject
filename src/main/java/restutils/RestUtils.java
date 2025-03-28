@@ -10,6 +10,8 @@ import reporting.ExtentReportManager;
 
 import java.util.Map;
 
+import static io.restassured.RestAssured.requestSpecification;
+
 
 public class RestUtils {
 
@@ -19,6 +21,7 @@ public class RestUtils {
                 .headers(headers)
                 .contentType(ContentType.JSON)
                 .body(requestPayload);
+                //.log().all();
     }
 
     private static void printRequestLogInReport(RequestSpecification requestSpecification) {
@@ -62,7 +65,12 @@ public class RestUtils {
         printResponseLogInReport(response);
         return response;
     }
-    public static Response performGet(String endpoint, Map<String,String> headers){
-        return getRequestSpecification(endpoint,"",headers).get();
+    //public static Response performGet(String endpoint, Map<String,String> headers){
+          //return getRequestSpecification(endpoint,"",headers).get();
+    public static Response performGet(String endpoint, Map<String, String> headers) {
+        Response response = getRequestSpecification(endpoint, "", headers).get();
+        printResponseLogInReport(response);
+        return response;
+
     }
 }
