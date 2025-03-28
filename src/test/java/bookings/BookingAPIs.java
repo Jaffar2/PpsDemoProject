@@ -27,5 +27,8 @@ public class BookingAPIs {
     public Response getBookingById(String id) {
         return RestUtils.performGet((String) Base.dataFromJsonFile.get("getBookingEndpoint")+"/"+id, Map.of());
     }
+    public Response getAgent() {
+        return RestUtils.performGet((String) Base.dataFromJsonFile.get("getAgentEndpoint"), Map.of());
+    }
 
 }

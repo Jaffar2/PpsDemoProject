@@ -68,7 +68,11 @@ public class ExtentReportManager {
             Setup.getExtentTest().info(MarkupHelper.createCodeBlock(json, CodeLanguage.JSON));
         }
     }
-
+    public static void logHTML(String json) {
+        if (Setup.getExtentTest() != null) {
+            Setup.getExtentTest().info(MarkupHelper.createCodeBlock(json, CodeLanguage.XML));
+        }
+    }
     public static void logHeaders(List<Header> headersList) {
         if (Setup.getExtentTest() != null) {
             String[][] arrayHeaders = headersList.stream()

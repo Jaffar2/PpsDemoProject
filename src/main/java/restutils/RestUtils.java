@@ -39,7 +39,18 @@ public class RestUtils {
         ExtentReportManager.logInfoDetails("Response Headers are ");
         ExtentReportManager.logHeaders(response.getHeaders().asList());
         ExtentReportManager.logInfoDetails("Response body is ");
+        System.out.println("====================***************"+ response.getBody().prettyPrint());
         ExtentReportManager.logJson(response.getBody().prettyPrint());
+
+    }
+    private static void printResponseLogInReportFail(Response response) {
+        ExtentReportManager.logInfoDetails("Response status is " + response.getStatusCode());
+        ExtentReportManager.logInfoDetails("Response Headers are ");
+        ExtentReportManager.logHeaders(response.getHeaders().asList());
+        ExtentReportManager.logFailureDetails("Response body is ");
+        System.out.println("====================***************"+ response.getBody().prettyPrint());
+        ExtentReportManager.logHTML(response.getBody().prettyPrint());
+
     }
 
     public static Response performPost(String endPoint, String requestPayload, Map<String,String>headers) {
@@ -68,8 +79,15 @@ public class RestUtils {
     //public static Response performGet(String endpoint, Map<String,String> headers){
           //return getRequestSpecification(endpoint,"",headers).get();
     public static Response performGet(String endpoint, Map<String, String> headers) {
-        Response response = getRequestSpecification(endpoint, "", headers).get();
-        printResponseLogInReport(response);
+        RequestSpecification requestSpecification = getRequestSpecification(endpoint, "", headers);
+        Response response=requestSpecification.get();
+        printRequestLogInReport(requestSpecification);
+        if(response.statusCode()==404) {
+            printResponseLogInReportFail(response);
+        }
+        else {
+            printResponseLogInReport(response);
+        }
         return response;
 
     }
