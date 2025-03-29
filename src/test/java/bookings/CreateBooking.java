@@ -93,7 +93,6 @@ public class CreateBooking extends BookingAPIs {
   @Attachment("link to logFile")
 
   public void getAgentsWithId() throws IOException {
-    System.out.println("==========================>>>>>>>>>>>>>>>>>>>>>Running getAgentsWithId test");
     Response response = getAgentWithIdAccounts();
     Assert.assertEquals(response.statusCode(), 200);
 
