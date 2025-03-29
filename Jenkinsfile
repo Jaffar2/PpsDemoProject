@@ -53,10 +53,10 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
-                        reportDir: 'target/extent-reports',  // Directory containing your ExtentReports HTML files
-                        reportFiles: 'TestReport',           // Change this to your specific HTML report file if different
-                        reportName: 'ExtentReport',
-                        reportTitles: '',
+                        reportDir: 'htmlreports',
+                        reportFiles: 'index.html',
+                        reportName: 'Extent Report'
+                        reportTitles: 'ApiAutomation',
                         useWrapperFileDirectly: true
                     ])
                 }
