@@ -9,8 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-import static org.javers.core.JaversBuilder.logger;
-
 public class Setup implements ITestListener {
 
     private static ExtentReports extentReports;
@@ -19,11 +17,24 @@ public class Setup implements ITestListener {
     @Override
     public void onStart(ITestContext context) {
         if (extentReports == null) {
-            String fileName = ExtentReportManager.getReportNameWithTimeStamp();
-            String fullReportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
-            //String fullReportPath = System.getenv("WORKSPACE") + File.separator + "reports" + File.separator + "extentReport.html";
-            extentReports = ExtentReportManager.createInstance(fullReportPath, "Test API Automation Report", "Test Execution Report");
-            System.out.println("Extent Report initialized at: " + fullReportPath);
+            // Determine if running on Jenkins or locally and set the report path accordingly
+            String reportPath;
+            String jenkinsWorkspace = System.getenv("WORKSPACE");
+
+            if (jenkinsWorkspace != null && !jenkinsWorkspace.isEmpty()) {
+                // Jenkins environment detected, use Jenkins workspace
+                reportPath = jenkinsWorkspace + File.separator + "extent-reports" + File.separator + "extentReport.html";
+                System.out.println("Running on Jenkins. Saving report to: " + reportPath);
+            } else {
+                // Local environment detected, use local workspace
+                String fileName = ExtentReportManager.getReportNameWithTimeStamp();
+                reportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
+                System.out.println("Running locally. Saving report to: " + reportPath);
+            }
+
+            // Initialize ExtentReports with the determined path
+            extentReports = ExtentReportManager.createInstance(reportPath, "Test API Automation Report", "Test Execution Report");
+            System.out.println("Extent Report initialized at: " + reportPath);
         }
     }
 
@@ -55,13 +66,11 @@ public class Setup implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         getExtentTest().pass("Test passed: " + result.getMethod().getMethodName());
-
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
-
     }
 
     @Override
@@ -73,4 +82,5 @@ public class Setup implements ITestListener {
         return extentTest.get();
     }
 }
+
 
