@@ -42,7 +42,7 @@ public class CreateBooking extends BookingAPIs {
     Response response = createBooking(requestPayload);
     Assert.assertEquals(response.statusCode(), 200);
     createdId = response.jsonPath().getString("bookingid");
-    System.out.println(createdId);
+    //System.out.println(createdId);
   }
 
   @Epic("endToend smokeTest")
