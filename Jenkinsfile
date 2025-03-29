@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define Maven home path, adjust according to your Jenkins setup if necessary
         MAVEN_HOME = tool name: 'Maven 3', type: 'ToolLocation'
-        PATH = 'C:\Users\jaffa\apache-maven-3.9.7\bin'
+         PATH = "${MAVEN_HOME}/bin:${env.PATH}"
     }
 
     stages {
