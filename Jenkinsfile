@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define Maven home path, adjust according to your Jenkins setup if necessary
-        MAVEN_HOME = tool name: 'M2_HOME', type: 'ToolLocation'
+        MAVEN_HOME = tool name: 'MAVEN_HOME', type: 'ToolLocation'
         PATH = "${MAVEN_HOME}/bin:${env.PATH}"
     }
 
