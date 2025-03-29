@@ -67,7 +67,6 @@ public class Setup implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
-
         // Capture and print only the relevant AssertionError messages from the error stream
         captureAssertionErrorMessages();
     }
