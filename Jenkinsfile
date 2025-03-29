@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat 'test -Denv=dev'
+                bat 'echo %env%'
             }
 
             post {
