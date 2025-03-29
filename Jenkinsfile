@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat 'clean test'
+                bat 'test'
             }
 
             post {
