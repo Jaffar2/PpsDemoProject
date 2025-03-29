@@ -1,17 +1,15 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
-                withMaven(maven: 'Maven 3.9.7') {  // Use your actual Maven tool name
+                withMaven(maven: 'Maven 3.9.9') {  // Use your actual Maven tool name
                     sh 'mvn clean install'
                 }
             }
         }
-    }
-}
 
-    stages {
         // Stage to clean and build the project using Maven
         stage('Clean & Build') {
             steps {
@@ -85,4 +83,5 @@ pipeline {
         }
     }
 }
+
 
