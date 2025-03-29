@@ -73,7 +73,7 @@ public class CreateBooking extends BookingAPIs {
 
   @Epic("endToend smokeTest")
   @Feature("smokeTest endToend on all environments")
-  @Test(description = "Get agents Service to search person on provided parameter", priority = 4)
+  @Test(description = "Get agents Service to search person on provided parameter", priority = 5)
   @Story("get agents")
   @Severity(SeverityLevel.NORMAL)
   @Link("link to JIRA-Tickets")
@@ -86,13 +86,14 @@ public class CreateBooking extends BookingAPIs {
   }
   @Epic("endToend smokeTest")
   @Feature("smokeTest endToend on all environments")
-  @Test(description = "Get agents Service to search person on provided parameter", priority = 4)
-  @Story("get agents")
+  @Test(description = "Get agents with id & accounts", priority = 6)
+  @Story("get agents with id & accounts")
   @Severity(SeverityLevel.NORMAL)
   @Link("link to JIRA-Tickets")
   @Attachment("link to logFile")
 
   public void getAgentsWithId() throws IOException {
+    System.out.println("==========================>>>>>>>>>>>>>>>>>>>>>Running getAgentsWithId test");
     Response response = getAgentWithIdAccounts();
     Assert.assertEquals(response.statusCode(), 200);
 

@@ -13,6 +13,7 @@
                     <include name="getBookings"/>
                     <include name="getBookingById"/>
                     <include name="getAgents"/>
+                    <include name="getAgentsWithId"/>
                 </methods>
             </class>
         </classes>

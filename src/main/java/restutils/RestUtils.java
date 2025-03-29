@@ -16,7 +16,7 @@ import static io.restassured.RestAssured.requestSpecification;
 public class RestUtils {
 
     private static RequestSpecification getRequestSpecification(String endPoint, Object requestPayload, Map<String,String>headers) {
-        return RestAssured.given()
+        return RestAssured.given().log().all()
                 .baseUri(endPoint)
                 .headers(headers)
                 .contentType(ContentType.JSON)
@@ -89,6 +89,5 @@ public class RestUtils {
             printResponseLogInReport(response);
         }
         return response;
-
     }
 }
