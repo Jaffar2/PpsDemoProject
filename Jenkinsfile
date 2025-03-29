@@ -53,8 +53,8 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
-                        reportDir: 'reports',
-                        reportFiles: 'index.html',
+                        reportDir: 'htmlreports',
+                        reportFiles: 'ExtentReportl',
                         reportName: 'Test API Automation Report'
                         reportTitles: 'TestReport',
                         useWrapperFileDirectly: true
