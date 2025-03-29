@@ -20,8 +20,8 @@ public class RestUtils {
                 .baseUri(endPoint)
                 .headers(headers)
                 .contentType(ContentType.JSON)
-                .body(requestPayload);
-                //.log().all();
+                .body(requestPayload)
+                .log().all();
     }
 
     private static void printRequestLogInReport(RequestSpecification requestSpecification) {
@@ -39,7 +39,7 @@ public class RestUtils {
         ExtentReportManager.logInfoDetails("Response Headers are ");
         ExtentReportManager.logHeaders(response.getHeaders().asList());
         ExtentReportManager.logInfoDetails("Response body is ");
-        System.out.println("====================***************"+ response.getBody().prettyPrint());
+        //System.out.println("====================***************"+ response.getBody().prettyPrint());
         ExtentReportManager.logJson(response.getBody().prettyPrint());
 
     }
@@ -48,7 +48,7 @@ public class RestUtils {
         ExtentReportManager.logInfoDetails("Response Headers are ");
         ExtentReportManager.logHeaders(response.getHeaders().asList());
         ExtentReportManager.logFailureDetails("Response body is ");
-        System.out.println("====================***************"+ response.getBody().prettyPrint());
+        //System.out.println("====================***************"+ response.getBody().prettyPrint());
         ExtentReportManager.logHTML(response.getBody().prettyPrint());
 
     }
