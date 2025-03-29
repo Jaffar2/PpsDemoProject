@@ -6,12 +6,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.List;
-
 public class Setup implements ITestListener {
 
     private static ExtentReports extentReports;
@@ -67,8 +61,7 @@ public class Setup implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
-        // Capture and print only the relevant AssertionError messages from the error stream
-        captureAssertionErrorMessages();
+
     }
 
     @Override
@@ -79,28 +72,8 @@ public class Setup implements ITestListener {
     public static ExtentTest getExtentTest() {
         return extentTest.get();
     }
-
-    // Custom method to capture AssertionError messages from the error stream
-    private void captureAssertionErrorMessages() {
-        try {
-            // Correcting the command syntax and path escaping for Maven execution
-            String mvnCommand = "C:\\Users\\jaffa\\apache-maven-3.9.7\\bin\\mvn.cmd test"; // Fixed path and command
-            Process process = Runtime.getRuntime().exec(mvnCommand); // Execute Maven command
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Filter for AssertionError messages containing "expected [200] but found [404]"
-                if (line.contains("expected [200] but found [404]")) {
-                    System.out.println(line);  // Only print the AssertionError message
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
+
 
 
 
