@@ -83,7 +83,9 @@ public class Setup implements ITestListener {
     // Custom method to capture AssertionError messages from the error stream
     private void captureAssertionErrorMessages() {
         try {
-            Process process = Runtime.getRuntime().exec("C:\\Users\\jaffa\\apache-maven-3.9.7\\bin\\mvn.cmd\"test"); // Command to run tests
+            // Correcting the command syntax and path escaping for Maven execution
+            String mvnCommand = "C:\\Users\\jaffa\\apache-maven-3.9.7\\bin\\mvn.cmd test"; // Fixed path and command
+            Process process = Runtime.getRuntime().exec(mvnCommand); // Execute Maven command
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
             String line;
@@ -99,6 +101,7 @@ public class Setup implements ITestListener {
         }
     }
 }
+
 
 
 
