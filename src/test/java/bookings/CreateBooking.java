@@ -23,6 +23,7 @@ public class CreateBooking extends BookingAPIs {
   @Severity(SeverityLevel.NORMAL)
   @Link("link to JIRA-Tickets")
   @Attachment("link to logFile")
+
   public void getToken() throws IOException {
     String requestPayload = Payloads.getToken();
     Response response = requestToken(requestPayload);
@@ -99,15 +100,15 @@ public class CreateBooking extends BookingAPIs {
   }
   @Epic("endToend smokeTest")
   @Feature("smokeTest endToend on all environments")
-  @Test(description = "create agents", priority = 2)
+  @Test(description = "create agents with id & accounts", priority = 7)
   @Story("agents creation")
   @Severity(SeverityLevel.NORMAL)
   @Link("link to JIRA-Tickets")
   @Attachment("link to logFile")
 
-  public void createAgents() throws IOException {
-    String requestPayload = Payloads.createAgentsPayloadFromString();
-    Response response = createAgents(requestPayload);
+  public void createAgentsIdAccounts() throws IOException {
+    String requestPayload = Payloads.createAgentsIdAccountsPayloadFromString();
+    Response response = createAgentsIdAccounts(requestPayload);
     Assert.assertEquals(response.statusCode(), 200);
 
   }

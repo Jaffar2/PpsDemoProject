@@ -57,7 +57,14 @@ public class RestUtils {
         RequestSpecification requestSpecification = getRequestSpecification(endPoint, requestPayload, headers);
         Response response =  requestSpecification.post();
         printRequestLogInReport(requestSpecification);
-        printResponseLogInReport(response);
+        //printRequestLogInReport(requestSpecification);
+        if(response.statusCode()==404) {
+            printResponseLogInReportFail(response);
+        }
+        else {
+            printResponseLogInReport(response);
+        }
+        //printResponseLogInReport(response);
         return response;
     }
 
