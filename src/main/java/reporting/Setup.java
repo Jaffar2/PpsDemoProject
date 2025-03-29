@@ -21,6 +21,8 @@ public class Setup implements ITestListener {
             String reportPath;
             String jenkinsWorkspace = System.getenv("WORKSPACE");
 
+            System.out.println(jenkinsWorkspace);
+
             if (jenkinsWorkspace != null && !jenkinsWorkspace.isEmpty()) {
                 // Jenkins environment detected, use Jenkins workspace
                 reportPath = jenkinsWorkspace + File.separator + "extent-reports" + File.separator + "extentReport.html";
