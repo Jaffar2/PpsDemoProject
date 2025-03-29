@@ -84,7 +84,7 @@ public class Setup implements ITestListener {
     // Custom method to capture AssertionError messages from the error stream
     private void captureAssertionErrorMessages() {
         try {
-            Process process = Runtime.getRuntime().exec("mvn test"); // Command to run tests
+            Process process = Runtime.getRuntime().exec("test -Denv=dev"); // Command to run tests
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
             String line;
