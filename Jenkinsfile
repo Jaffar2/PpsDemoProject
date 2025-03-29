@@ -3,12 +3,14 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                withMaven(maven: 'Maven 3.9.9') {  // Use your actual Maven tool name
-                    sh 'mvn clean install'
+                    steps {
+                        script {
+                            withMaven(maven: 'Maven-3.9.9') {
+                                sh 'mvn clean package'
+                            }
+                        }
+                    }
                 }
-            }
-        }
 
         // Stage to clean and build the project using Maven
         stage('Clean & Build') {
