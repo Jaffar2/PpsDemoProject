@@ -3,5 +3,6 @@
   "createBookingEndpoint" : "https://restful-booker.herokuapp.com/booking",
   "tokenEndpoint" : "https://restful-booker.herokuapp.com/auth",
   "getBookingEndpoint" : "https://restful-booker.herokuapp.com/booking",
-  "getAgentEndpoint" : "https://editor.swagger.io/agent?agentId=270&firstName=Robert&lastName=Carelse&agentType=1&agentStatus=1&postalCode=7980&additionalNameLine=12&brand=1&idReference=0000987654321&coresuite-datasource-key=null&coresuite-user-name=null&coresuite-user-language=en&coresuite-monitoring-token=null"
+  "getAgentEndpoint" : "https://editor.swagger.io/agent?agentId=270&firstName=Robert&lastName=Carelse&agentType=1&agentStatus=1&postalCode=7980&additionalNameLine=12&brand=1&idReference=0000987654321&coresuite-datasource-key=null&coresuite-user-name=null&coresuite-user-language=en&coresuite-monitoring-token=null",
+  "getAgentsWithIdEndpoint" : "https://editor.swagger.io/agents/270/account"
 }

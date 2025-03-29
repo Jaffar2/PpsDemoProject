@@ -28,4 +28,7 @@ public class BookingAPIs {
         return RestUtils.performGet((String) Base.dataFromJsonFile.get("getAgentEndpoint"), Map.of());
     }
 
+    public Response getAgentWithIdAccounts() {
+        return RestUtils.performGet((String) Base.dataFromJsonFile.get("getAgentsWithIdEndpoint"), Map.of());
+    }
 }
