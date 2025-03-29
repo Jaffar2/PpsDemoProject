@@ -56,7 +56,7 @@ pipeline {
                         reportDir: 'htmlreports',
                         reportFiles: 'ExtentReportl',
                         reportName: 'Test API Automation Report'
-                        useWrapperFileDirectly: true
+
                     ])
                 }
             }
