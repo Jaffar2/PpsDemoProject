@@ -56,7 +56,7 @@ pipeline {
                         reportDir: 'htmlreports',
                         reportFiles: 'index.html',
                         reportName: 'Extent Report'
-                        reportTitles: 'Test Execution Report',
+                        reportTitles: 'ExtentReport',
                         useWrapperFileDirectly: true
                     ])
                 }
