@@ -16,7 +16,6 @@ public class BookingAPIs {
     public Response createBooking(String createBookingPayload) {
         String endPoint = (String) Base.dataFromJsonFile.get("createBookingEndpoint");
         return RestUtils.performPost(endPoint, createBookingPayload, new HashMap<>());
-
     }
     public Response getBookingList() {
         return RestUtils.performGet((String) Base.dataFromJsonFile.get("getBookingEndpoint"), Map.of());
@@ -30,5 +29,9 @@ public class BookingAPIs {
 
     public Response getAgentWithIdAccounts() {
         return RestUtils.performGet((String) Base.dataFromJsonFile.get("getAgentsWithIdEndpoint"), Map.of());
+    }
+    public Response createAgents(String createBookingPayload) {
+        String endPoint = (String) Base.dataFromJsonFile.get("createAgentsEndpoint");
+        return RestUtils.performPost(endPoint, createBookingPayload, new HashMap<>());
     }
 }

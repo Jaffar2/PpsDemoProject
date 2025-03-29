@@ -97,4 +97,18 @@ public class CreateBooking extends BookingAPIs {
     Assert.assertEquals(response.statusCode(), 200);
 
   }
+  @Epic("endToend smokeTest")
+  @Feature("smokeTest endToend on all environments")
+  @Test(description = "create agents", priority = 2)
+  @Story("agents creation")
+  @Severity(SeverityLevel.NORMAL)
+  @Link("link to JIRA-Tickets")
+  @Attachment("link to logFile")
+
+  public void createAgents() throws IOException {
+    String requestPayload = Payloads.createAgentsPayloadFromString();
+    Response response = createAgents(requestPayload);
+    Assert.assertEquals(response.statusCode(), 200);
+
+  }
 }

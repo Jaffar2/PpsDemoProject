@@ -14,6 +14,7 @@
                     <include name="getBookingById"/>
                     <include name="getAgents"/>
                     <include name="getAgentsWithId"/>
+                    <include name="createAgents"/>
                 </methods>
             </class>
         </classes>
