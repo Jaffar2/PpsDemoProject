@@ -53,7 +53,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
-                        reportDir: 'htmlreports\ExtentReport',
+                        reportDir: 'reports',
                         reportFiles: 'index.html',
                         reportName: 'Test API Automation Report'
                         reportTitles: 'TestReport',
