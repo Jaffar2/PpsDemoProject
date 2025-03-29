@@ -20,8 +20,8 @@ public class Setup implements ITestListener {
     public void onStart(ITestContext context) {
         if (extentReports == null) {
             String fileName = ExtentReportManager.getReportNameWithTimeStamp();
-            //String fullReportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
-            String fullReportPath = System.getenv("WORKSPACE") + File.separator + "reports" + File.separator + "extentReport.html";
+            String fullReportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
+            //String fullReportPath = System.getenv("WORKSPACE") + File.separator + "reports" + File.separator + "extentReport.html";
             extentReports = ExtentReportManager.createInstance(fullReportPath, "Test API Automation Report", "Test Execution Report");
             System.out.println("Extent Report initialized at: " + fullReportPath);
         }
@@ -54,14 +54,14 @@ public class Setup implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        //getExtentTest().pass("Test passed: " + result.getMethod().getMethodName());
-        logger.info("✅ Test passed: " + result.getMethod().getMethodName());
+        getExtentTest().pass("Test passed: " + result.getMethod().getMethodName());
+
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        //getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
-        logger.error("❌ Test failed: " + result.getMethod().getMethodName());
+        getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
+
     }
 
     @Override
