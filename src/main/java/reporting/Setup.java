@@ -5,8 +5,11 @@ import com.aventstack.extentreports.ExtentTest;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+
+import static org.javers.core.JaversBuilder.logger;
 
 public class Setup implements ITestListener {
 
@@ -51,12 +54,14 @@ public class Setup implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        getExtentTest().pass("Test passed: " + result.getMethod().getMethodName());
+        //getExtentTest().pass("Test passed: " + result.getMethod().getMethodName());
+        logger.info("✅ Test passed: " + result.getMethod().getMethodName());
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
+        //getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
+        logger.error("❌ Test failed: " + result.getMethod().getMethodName());
     }
 
     @Override
