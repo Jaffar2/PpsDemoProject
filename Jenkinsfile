@@ -1,11 +1,15 @@
 pipeline {
     agent any
-
-    environment {
-        // Define Maven home path, adjust according to your Jenkins setup if necessary
-        MAVEN_HOME = tool name: 'MAVEN_HOME', type: 'ToolLocation'
-        PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+    stages {
+        stage('Build') {
+            steps {
+                withMaven(maven: 'Maven 3.9.7') {  // Use your actual Maven tool name
+                    sh 'mvn clean install'
+                }
+            }
+        }
     }
+}
 
     stages {
         // Stage to clean and build the project using Maven
