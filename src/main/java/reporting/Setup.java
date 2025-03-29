@@ -5,9 +5,12 @@ import com.aventstack.extentreports.ExtentTest;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.apache.logging.log4j.Logger;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.List;
 
 public class Setup implements ITestListener {
 
@@ -17,24 +20,18 @@ public class Setup implements ITestListener {
     @Override
     public void onStart(ITestContext context) {
         if (extentReports == null) {
-            // Determine if running on Jenkins or locally and set the report path accordingly
             String reportPath;
             String jenkinsWorkspace = System.getenv("WORKSPACE");
 
-            System.out.println(jenkinsWorkspace);
-
             if (jenkinsWorkspace != null && !jenkinsWorkspace.isEmpty()) {
-                // Jenkins environment detected, use Jenkins workspace
-                reportPath = jenkinsWorkspace + File.separator + "extent-reports" + File.separator + "extentReport.html";
+                reportPath = jenkinsWorkspace + "/extent-reports/extentReport.html";
                 System.out.println("Running on Jenkins. Saving report to: " + reportPath);
             } else {
-                // Local environment detected, use local workspace
                 String fileName = ExtentReportManager.getReportNameWithTimeStamp();
-                reportPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + fileName;
+                reportPath = System.getProperty("user.dir") + "/reports/" + fileName;
                 System.out.println("Running locally. Saving report to: " + reportPath);
             }
 
-            // Initialize ExtentReports with the determined path
             extentReports = ExtentReportManager.createInstance(reportPath, "Test API Automation Report", "Test Execution Report");
             System.out.println("Extent Report initialized at: " + reportPath);
         }
@@ -56,11 +53,8 @@ public class Setup implements ITestListener {
             throw new IllegalStateException("ExtentReports instance is not initialized. Ensure onStart() is called before any test.");
         }
 
-        ExtentTest test = extentReports.createTest(
-                result.getTestClass().getName() + " - " + result.getMethod().getMethodName(),
-                result.getMethod().getDescription()
-        );
-
+        ExtentTest test = extentReports.createTest(result.getTestClass().getName() + " - " + result.getMethod().getMethodName(),
+                result.getMethod().getDescription());
         extentTest.set(test);
         System.out.println("🔹 Test Started: " + result.getMethod().getMethodName());
     }
@@ -73,6 +67,9 @@ public class Setup implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         getExtentTest().fail("Test failed: " + result.getMethod().getMethodName());
+
+        // Capture and print only the relevant AssertionError messages from the error stream
+        captureAssertionErrorMessages();
     }
 
     @Override
@@ -83,6 +80,26 @@ public class Setup implements ITestListener {
     public static ExtentTest getExtentTest() {
         return extentTest.get();
     }
+
+    // Custom method to capture AssertionError messages from the error stream
+    private void captureAssertionErrorMessages() {
+        try {
+            Process process = Runtime.getRuntime().exec("mvn test"); // Command to run tests
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Filter for AssertionError messages containing "expected [200] but found [404]"
+                if (line.contains("expected [200] but found [404]")) {
+                    System.out.println(line);  // Only print the AssertionError message
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 
 
