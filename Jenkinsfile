@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define Maven home path, adjust according to your Jenkins setup if necessary
         MAVEN_HOME = tool name: 'Maven 3', type: 'ToolLocation'
-         PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+        PATH = "${MAVEN_HOME}/bin:${env.PATH}"
     }
 
     stages {
@@ -58,11 +58,12 @@ pipeline {
             }
         }
 
+        // Stage to deploy the application (Add your deploy steps here)
         stage('Deploy') {
             steps {
                 script {
                     echo "Deploying the application..."
-
+                    // Add deployment steps here (e.g., uploading to a server, Docker, etc.)
                 }
             }
         }
@@ -71,7 +72,6 @@ pipeline {
     post {
         always {
             echo 'Cleaning up resources'
-
         }
         success {
             echo 'Pipeline executed successfully!'
@@ -82,17 +82,3 @@ pipeline {
     }
 }
 
-
-    post {
-        always {
-            echo 'Cleaning up resources'
-
-        }
-        success {
-            echo 'Pipeline executed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
-    }
-}
