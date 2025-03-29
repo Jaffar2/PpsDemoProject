@@ -6,7 +6,8 @@ pipeline {
                     steps {
                         script {
                             withMaven(maven: 'maven') {
-                                sh 'mvn clean package'
+                                bat 'mvn clean install'
+
                             }
                         }
                     }
@@ -18,7 +19,7 @@ pipeline {
                 script {
                     // Running Maven clean and install command
                     echo "Running Maven clean install"
-                    sh 'mvn clean install -DskipTests' // Skipping tests for build
+                    bat 'mvn clean install -DskipTests' // Skipping tests for build
                 }
             }
         }
@@ -29,7 +30,7 @@ pipeline {
                 script {
                     // Running tests with Maven
                     echo "Running Maven tests"
-                    sh 'mvn test'
+                    bat 'mvn test'
                 }
             }
 
