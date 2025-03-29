@@ -3,15 +3,15 @@ pipeline {
 
     stages {
         stage('Build') {
-                    steps {
-                        script {
-                            withMaven(maven: 'maven') {
-                                bat 'mvn clean install'
-
-                            }
-                        }
+            steps {
+                script {
+                    withMaven(maven: 'maven') {
+                        // Using bat for Windows
+                        bat 'mvn clean package'
                     }
                 }
+            }
+        }
 
         // Stage to clean and build the project using Maven
         stage('Clean & Build') {
@@ -86,5 +86,6 @@ pipeline {
         }
     }
 }
+
 
 
