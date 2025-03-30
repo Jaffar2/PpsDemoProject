@@ -31,6 +31,8 @@ public class BookingAPIs {
     }
     public Response createAgentsIdAccounts(String payload) {
         String endPoint = (String) Base.dataFromJsonFile.get("createAgentsWithIdEndpoint");
-        return RestUtils.performPost(endPoint, payload, Map.of("Content-Type", "application/json"));
+         return RestUtils.performPost(endPoint, payload, Map.of("Content-Type", "application/json"));
+
     }
 }
+

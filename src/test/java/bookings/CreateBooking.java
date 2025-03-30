@@ -110,6 +110,5 @@ public class CreateBooking extends BookingAPIs {
     String requestPayload = Payloads.createAgentsIdAccountsPayloadFromString();
     Response response = createAgentsIdAccounts(requestPayload);
     Assert.assertEquals(response.statusCode(), 200);
-
   }
 }

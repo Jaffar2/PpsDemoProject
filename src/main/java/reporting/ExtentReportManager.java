@@ -68,18 +68,23 @@ public class ExtentReportManager {
     }
 
     public static void logJson(String json) {
-        // Log the request only once
-        if (Setup.getExtentTest() != null && !isRequestLogged.get()) {
+        // Log the JSON request or response
+        if (Setup.getExtentTest() != null) {
             Setup.getExtentTest().info(MarkupHelper.createCodeBlock(json, CodeLanguage.JSON));
-            isRequestLogged.set(true);  // Mark request as logged
+        }
+    }
+
+    public static void logResponse(String responseJson) {
+        // Log the response body
+        if (Setup.getExtentTest() != null) {
+            Setup.getExtentTest().info(MarkupHelper.createCodeBlock(responseJson, CodeLanguage.JSON));
         }
     }
 
     public static void logHTML(String html) {
-        // Log the HTML only once
-        if (Setup.getExtentTest() != null && !isRequestLogged.get()) {
+        // Log the HTML
+        if (Setup.getExtentTest() != null) {
             Setup.getExtentTest().info(MarkupHelper.createCodeBlock(html, CodeLanguage.XML));
-            isRequestLogged.set(true);  // Mark HTML as logged
         }
     }
 
@@ -92,18 +97,9 @@ public class ExtentReportManager {
         }
     }
 
-    public static void logResponse(String responseJson) {
-        // Log the response only once
-        if (Setup.getExtentTest() != null && !isResponseLogged.get()) {
-            Setup.getExtentTest().info(MarkupHelper.createCodeBlock(responseJson, CodeLanguage.JSON));
-            isResponseLogged.set(true);  // Mark response as logged
-        }
-    }
-
     // Reset flags for each test to ensure no duplication for subsequent tests
     public static void resetLoggingFlags() {
         isRequestLogged.set(false);
         isResponseLogged.set(false);
     }
 }
-

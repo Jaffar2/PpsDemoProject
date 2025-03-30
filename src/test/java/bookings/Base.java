@@ -21,11 +21,5 @@ public class Base {
         }
 
     }
-
-    @BeforeMethod
-    public void beforeTest() {
-        ExtentReportManager.resetLoggingFlags();
-    }
-
 }
 
