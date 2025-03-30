@@ -12,10 +12,9 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.requestSpecification;
 
-
 public class RestUtils {
 
-    private static RequestSpecification getRequestSpecification(String endPoint, Object requestPayload, Map<String,String>headers) {
+    private static RequestSpecification getRequestSpecification(String endPoint, Object requestPayload, Map<String, String> headers) {
         return RestAssured.given().log().all()
                 .baseUri(endPoint)
                 .headers(headers)
@@ -39,62 +38,168 @@ public class RestUtils {
         ExtentReportManager.logInfoDetails("Response Headers are ");
         ExtentReportManager.logHeaders(response.getHeaders().asList());
         ExtentReportManager.logInfoDetails("Response body is ");
-        //System.out.println("====================***************"+ response.getBody().prettyPrint());
         ExtentReportManager.logJson(response.getBody().prettyPrint());
-
     }
+
     private static void printResponseLogInReportFail(Response response) {
         ExtentReportManager.logInfoDetails("Response status is " + response.getStatusCode());
         ExtentReportManager.logInfoDetails("Response Headers are ");
         ExtentReportManager.logHeaders(response.getHeaders().asList());
         ExtentReportManager.logFailureDetails("Response body is ");
-        //System.out.println("====================***************"+ response.getBody().prettyPrint());
         ExtentReportManager.logHTML(response.getBody().prettyPrint());
-
     }
 
-    public static Response performPost(String endPoint, String requestPayload, Map<String,String>headers) {
+    public static Response performPost(String endPoint, String requestPayload, Map<String, String> headers) {
         RequestSpecification requestSpecification = getRequestSpecification(endPoint, requestPayload, headers);
-        Response response =  requestSpecification.post();
+        Response response = requestSpecification.post();
         printRequestLogInReport(requestSpecification);
-        //printRequestLogInReport(requestSpecification);
-        if(response.statusCode()==404) {
-            printResponseLogInReportFail(response);
+
+        switch (response.statusCode()) {
+            case 200:
+                printResponseLogInReport(response);
+                break;
+            case 201:
+                printResponseLogInReport(response);
+                break;
+            case 400:
+                printResponseLogInReportFail(response);
+                break;
+            case 401:
+                printResponseLogInReportFail(response);
+                break;
+            case 403:
+                printResponseLogInReportFail(response);
+                break;
+            case 404:
+                printResponseLogInReportFail(response);
+                break;
+            case 500:
+                printResponseLogInReportFail(response);
+                break;
+            case 502:
+                printResponseLogInReportFail(response);
+                break;
+            case 503:
+                printResponseLogInReportFail(response);
+                break;
+            default:
+                printResponseLogInReport(response);
+                break;
         }
-        else {
-            printResponseLogInReport(response);
-        }
-        //printResponseLogInReport(response);
+
         return response;
     }
 
-    public static Response performPost(String endPoint, Map<String, Object> requestPayload, Map<String,String>headers) {
+    public static Response performPost(String endPoint, Map<String, Object> requestPayload, Map<String, String> headers) {
         RequestSpecification requestSpecification = getRequestSpecification(endPoint, requestPayload, headers);
-        Response response =  requestSpecification.post();
+        Response response = requestSpecification.post();
         printRequestLogInReport(requestSpecification);
-        printResponseLogInReport(response);
+
+
+        switch (response.statusCode()) {
+            case 200:
+                printResponseLogInReport(response);
+                break;
+            case 201:
+                printResponseLogInReport(response);
+                break;
+            case 400:
+                printResponseLogInReportFail(response);
+                break;
+            case 401:
+                printResponseLogInReportFail(response);
+                break;
+            case 403:
+                printResponseLogInReportFail(response);
+                break;
+            case 404:
+                printResponseLogInReportFail(response);
+                break;
+            case 500:
+                printResponseLogInReportFail(response);
+                break;
+            case 502:
+                printResponseLogInReportFail(response);
+                break;
+            case 503:
+                printResponseLogInReportFail(response);
+                break;
+            default:
+                printResponseLogInReport(response);
+                break;
+        }
+
         return response;
     }
 
-    public static Response performPost(String endPoint, Object requestPayloadAsPojo, Map<String,String>headers) {
+    public static Response performPost(String endPoint, Object requestPayloadAsPojo, Map<String, String> headers) {
         RequestSpecification requestSpecification = getRequestSpecification(endPoint, requestPayloadAsPojo, headers);
-        Response response =  requestSpecification.post();
+        Response response = requestSpecification.post();
         printRequestLogInReport(requestSpecification);
-        printResponseLogInReport(response);
+
+        switch (response.statusCode()) {
+            case 200:
+                printResponseLogInReport(response);
+                break;
+            case 201:
+                printResponseLogInReport(response);
+                break;
+            case 400:
+                printResponseLogInReportFail(response);
+                break;
+            case 401:
+                printResponseLogInReportFail(response);
+                break;
+            case 403:
+                printResponseLogInReportFail(response);
+                break;
+            case 404:
+                printResponseLogInReportFail(response);
+                break;
+            case 500:
+                printResponseLogInReportFail(response);
+                break;
+            case 502:
+                printResponseLogInReportFail(response);
+                break;
+            case 503:
+                printResponseLogInReportFail(response);
+                break;
+            default:
+                printResponseLogInReport(response);
+                break;
+        }
+
         return response;
     }
-    //public static Response performGet(String endpoint, Map<String,String> headers){
-          //return getRequestSpecification(endpoint,"",headers).get();
+
     public static Response performGet(String endpoint, Map<String, String> headers) {
         RequestSpecification requestSpecification = getRequestSpecification(endpoint, "", headers);
-        Response response=requestSpecification.get();
+        Response response = requestSpecification.get();
         printRequestLogInReport(requestSpecification);
-        if(response.statusCode()==404) {
-            printResponseLogInReportFail(response);
+
+        switch (response.statusCode()) {
+            case 200:
+                printResponseLogInReport(response);
+                break;
+            case 404:
+                printResponseLogInReportFail(response);
+                break;
+            case 500:
+                printResponseLogInReportFail(response);
+                break;
+            case 502:
+                printResponseLogInReportFail(response);
+                break;
+            case 503:
+                printResponseLogInReportFail(response);
+                break;
+            default:
+                printResponseLogInReport(response);
+                break;
         }
-        else {
-            printResponseLogInReport(response);
-        }
+
         return response;
     }
 }
+
